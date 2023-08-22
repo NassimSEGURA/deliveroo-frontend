@@ -67,9 +67,11 @@ const Menuitems = ({ categories }) => {
   };
 
   useEffect(() => {
-    cart.map((article) => {
-      setSubTotal(subTotal + article.price * article.quantity);
-    });
+    const newSubTotal = cart.reduce((total, article) => {
+      return total + article.price * article.quantity;
+    }, 0);
+
+    setSubTotal(newSubTotal);
   }, [cart]);
 
   return (
